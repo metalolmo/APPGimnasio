@@ -8,11 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import es.ua.eps.gimnasioapp.databinding.ItemRutinaBinding
 import es.ua.eps.gimnasioapp.RutinasActivity
 
-data class Rutina(
-    val nombre: String,
-    val descripcion: String,
-    val duracion: String
-)
 
 class RutinaAdapter(private val rutinas: List<Rutina>) :
     RecyclerView.Adapter<RutinaAdapter.RutinaViewHolder>() {
