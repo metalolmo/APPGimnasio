@@ -10,7 +10,6 @@ import es.ua.eps.gimnasioapp.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -24,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnEntrenar.setOnClickListener {
-            startActivity(Intent(this, EntrenamientoActivity::class.java))
+            startActivity(Intent(this, SeleccionarRutinaActivity::class.java))
         }
 
         binding.btnHistorial.setOnClickListener {
@@ -48,7 +47,6 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.menu_acerca_de -> {
-                // Aquí podrías mostrar un diálogo más adelante
                 true
             }
             R.id.menu_salir -> {

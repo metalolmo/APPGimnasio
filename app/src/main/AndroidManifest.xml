@@ -13,9 +13,12 @@
         android:theme="@style/Theme.Gimnasioapp"
         tools:targetApi="31">
         <activity
-            android:name=".DetalleRutinaActivity"
-            android:theme="@style/Theme.Gimnasioapp"
+            android:name=".SeleccionarRutinaActivity"
             android:exported="false" />
+        <activity
+            android:name=".DetalleRutinaActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Gimnasioapp" />
         <activity
             android:name=".RutinaAdapter"
             android:exported="false" />

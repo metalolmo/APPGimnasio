@@ -47,7 +47,7 @@ class RutinasActivity : AppCompatActivity() {
             .setPositiveButton("Agregar") { _, _ ->
                 val nombre = input.text.toString()
                 if (nombre.isNotBlank()) {
-                    val nuevaRutina = Rutina(nombre, "", "")
+                    val nuevaRutina = Rutina(nombre, "", 0, emptyList())
                     listaRutinas.add(nuevaRutina)
                     RutinaStorage.guardarRutinas(this, listaRutinas)
                     binding.recyclerRutinas.adapter = RutinaAdapter(listaRutinas)
@@ -59,10 +59,10 @@ class RutinasActivity : AppCompatActivity() {
 
     private fun getDummyRutinas(): List<Rutina> {
         return listOf(
-            Rutina("Pecho y tríceps", "Ejercicios de press, fondos y aperturas.", "45 min"),
-            Rutina("Espalda y bíceps", "Dominadas, remo y curl de bíceps.", "50 min"),
-            Rutina("Piernas completas", "Sentadillas, zancadas y prensa.", "60 min"),
-            Rutina("Abdomen y cardio", "Planchas, crunch y elíptica.", "40 min")
+            Rutina("Pecho y tríceps", "Ejercicios de press, fondos y aperturas.", 45, emptyList()),
+            Rutina("Espalda y bíceps", "Dominadas, remo y curl de bíceps.", 50, emptyList()),
+            Rutina("Piernas completas", "Sentadillas, zancadas y prensa.", 60, emptyList()),
+            Rutina("Abdomen y cardio", "Planchas, crunch y elíptica.", 40, emptyList())
         )
     }
 
