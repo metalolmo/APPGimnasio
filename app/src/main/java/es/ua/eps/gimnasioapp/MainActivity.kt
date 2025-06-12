@@ -6,12 +6,15 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import es.ua.eps.gimnasioapp.databinding.ActivityMainBinding
+import com.jakewharton.threetenabp.AndroidThreeTen
+
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AndroidThreeTen.init(this)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -35,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
@@ -43,7 +47,8 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_calendario -> {
-                startActivity(Intent(this, CalendarioActivity::class.java))
+                val intent = Intent(this, CalendarioActivity::class.java)
+                startActivity(intent)
                 true
             }
             R.id.menu_acerca_de -> {

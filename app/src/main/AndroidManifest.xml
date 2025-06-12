@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Gimnasioapp"
         tools:targetApi="31">
         <activity
+            android:name=".RegistroSeriesActivity"
+            android:exported="false" />
+        <activity
             android:name=".SeleccionarRutinaActivity"
             android:exported="false" />
         <activity

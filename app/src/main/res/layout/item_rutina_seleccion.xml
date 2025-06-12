@@ -3,20 +3,21 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="12dp">
+    android:padding="12dp"
+    android:gravity="center_vertical"
+    android:background="?android:attr/selectableItemBackground">
 
     <TextView
         android:id="@+id/tvNombreRutina"
         android:layout_width="0dp"
-        android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:text="Nombre de rutina"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:layout_weight="1"
+        android:text="Nombre rutina"
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/btnSeleccionarRutina"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Entrenar" />
+        android:text="ENTRENAR" />
 </LinearLayout>

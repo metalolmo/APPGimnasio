@@ -26,12 +26,15 @@ object RutinaStorage {
                 ejJson.put("nombre", ejercicio.nombre)
                 ejJson.put("seriesTotales", ejercicio.seriesTotales)
 
-                // Guardar pesos por serie
-                val pesosArray = JSONArray()
-                ejercicio.pesosPorSerie.forEach { peso ->
-                    pesosArray.put(peso)
+                // Guardar series como peso + repeticiones
+                val seriesArray = JSONArray()
+                ejercicio.series.forEach { serie ->
+                    val serieJson = JSONObject()
+                    serieJson.put("peso", serie.peso)
+                    serieJson.put("repeticiones", serie.repeticiones)
+                    seriesArray.put(serieJson)
                 }
-                ejJson.put("pesosPorSerie", pesosArray)
+                ejJson.put("series", seriesArray)
 
                 ejerciciosArray.put(ejJson)
             }
@@ -70,14 +73,17 @@ object RutinaStorage {
                     val nombreEjercicio = ejObj.getString("nombre")
                     val seriesTotales = ejObj.getInt("seriesTotales")
 
-                    val pesosPorSerie = mutableListOf<Float>()
-                    val pesosArray = ejObj.optJSONArray("pesosPorSerie") ?: JSONArray()
-                    for (k in 0 until pesosArray.length()) {
-                        pesosPorSerie.add(pesosArray.getDouble(k).toFloat())
+                    val series = mutableListOf<SerieRegistro>()
+                    val seriesArray = ejObj.optJSONArray("series") ?: JSONArray()
+                    for (k in 0 until seriesArray.length()) {
+                        val serieObj = seriesArray.getJSONObject(k)
+                        val peso = serieObj.optDouble("peso", 0.0).toFloat()
+                        val repeticiones = serieObj.optInt("repeticiones", 0)
+                        series.add(SerieRegistro(peso, repeticiones))
                     }
 
                     listaEjercicios.add(
-                        EjercicioEntreno(nombreEjercicio, seriesTotales, pesosPorSerie)
+                        EjercicioEntreno(nombreEjercicio, seriesTotales, series)
                     )
                 }
 

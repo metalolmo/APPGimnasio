@@ -4,5 +4,5 @@ import java.io.Serializable
 
 data class Ejercicio(
     val nombre: String,
-    val series: String
+    val series: Int,
 ) : Serializable

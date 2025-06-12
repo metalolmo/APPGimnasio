@@ -1,12 +1,12 @@
 package es.ua.eps.gimnasioapp
 
 import android.os.Bundle
-import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 class DetalleRutinaActivity : AppCompatActivity() {
+
     private lateinit var layoutEjercicios: LinearLayout
     private val ejercicios = mutableListOf<Ejercicio>()
     private lateinit var rutinaNombre: String
@@ -49,7 +49,9 @@ class DetalleRutinaActivity : AppCompatActivity() {
     ) {
         val editNombre = EditText(this).apply { setText(tvNombre.text) }
         val editDescripcion = EditText(this).apply { setText(tvDescripcion.text) }
-        val editDuracion = EditText(this).apply { setText(tvDuracion.text.removePrefix("Duración: ")) }
+        val editDuracion = EditText(this).apply {
+            setText(tvDuracion.text.removePrefix("Duración: "))
+        }
 
         val layout = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
@@ -65,7 +67,7 @@ class DetalleRutinaActivity : AppCompatActivity() {
                 tvNombre.text = editNombre.text
                 tvDescripcion.text = editDescripcion.text
                 tvDuracion.text = "Duración: ${editDuracion.text}"
-                // Aquí puedes actualizar RutinaStorage si quieres guardar esos datos también
+                // Si deseas guardar estos cambios en RutinaStorage, hazlo aquí
             }
             .setNegativeButton("Cancelar", null)
             .show()
@@ -86,8 +88,8 @@ class DetalleRutinaActivity : AppCompatActivity() {
             .setView(layout)
             .setPositiveButton("Agregar") { _, _ ->
                 val nombre = inputNombre.text.toString()
-                val series = inputSeries.text.toString()
-                if (nombre.isNotBlank() && series.isNotBlank()) {
+                val series = inputSeries.text.toString().toIntOrNull() ?: 0
+                if (nombre.isNotBlank() && series > 0) {
                     val ejercicio = Ejercicio(nombre, series)
                     ejercicios.add(ejercicio)
                     EjercicioStorage.guardarEjercicios(this, rutinaNombre, ejercicios)
@@ -133,7 +135,7 @@ class DetalleRutinaActivity : AppCompatActivity() {
 
     private fun mostrarDialogoEditarEjercicio(ejercicio: Ejercicio, textoView: TextView) {
         val inputNombre = EditText(this).apply { setText(ejercicio.nombre) }
-        val inputSeries = EditText(this).apply { setText(ejercicio.series) }
+        val inputSeries = EditText(this).apply { setText(ejercicio.series.toString()) }
 
         val layout = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
@@ -145,16 +147,19 @@ class DetalleRutinaActivity : AppCompatActivity() {
             .setTitle("Editar ejercicio")
             .setView(layout)
             .setPositiveButton("Guardar") { _, _ ->
-                val nuevo = Ejercicio(inputNombre.text.toString(), inputSeries.text.toString())
-                val index = ejercicios.indexOf(ejercicio)
-                if (index != -1) {
-                    ejercicios[index] = nuevo
-                    textoView.text = "${nuevo.nombre} - ${nuevo.series} series"
-                    EjercicioStorage.guardarEjercicios(this, rutinaNombre, ejercicios)
+                val nombre = inputNombre.text.toString()
+                val series = inputSeries.text.toString().toIntOrNull() ?: 0
+                if (nombre.isNotBlank() && series > 0) {
+                    val nuevo = Ejercicio(nombre, series)
+                    val index = ejercicios.indexOf(ejercicio)
+                    if (index != -1) {
+                        ejercicios[index] = nuevo
+                        textoView.text = "${nuevo.nombre} - ${nuevo.series} series"
+                        EjercicioStorage.guardarEjercicios(this, rutinaNombre, ejercicios)
+                    }
                 }
             }
             .setNegativeButton("Cancelar", null)
             .show()
     }
 }
-

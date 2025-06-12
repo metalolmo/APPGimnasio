@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "es.ua.eps.gimnasioapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "es.ua.eps.gimnasioapp"
@@ -37,6 +37,9 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.2.1")
+    implementation ("com.prolificinteractive:material-calendarview:1.4.3")
+    implementation("androidx.media3:media3-common-ktx:1.7.1")
+    implementation ("com.jakewharton.threetenabp:threetenabp:1.4.5")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

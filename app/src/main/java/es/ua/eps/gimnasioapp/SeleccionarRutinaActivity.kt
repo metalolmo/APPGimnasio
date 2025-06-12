@@ -18,9 +18,22 @@ class SeleccionarRutinaActivity : AppCompatActivity() {
         val listaRutinas = RutinaStorage.cargarRutinas(this)
 
         recyclerView.adapter = RutinaSeleccionAdapter(listaRutinas) { rutinaSeleccionada ->
+            // Cargar ejercicios reales asociados a la rutina
+            val ejerciciosGuardados = EjercicioStorage.cargarEjercicios(this, rutinaSeleccionada.nombre)
+
+            // Convertir a EjercicioEntreno
+            val ejerciciosParaEntreno = ejerciciosGuardados.map {
+                EjercicioEntreno(
+                    nombre = it.nombre,
+                    seriesTotales = it.series,
+                    series = MutableList(it.series) { SerieRegistro() }
+                )
+            }
+
+            // Lanzar EntrenamientoActivity
             val intent = Intent(this, EntrenamientoActivity::class.java)
             intent.putExtra("rutinaNombre", rutinaSeleccionada.nombre)
-            intent.putExtra("ejercicios", ArrayList(rutinaSeleccionada.listaEjercicios))
+            intent.putExtra("ejercicios", ArrayList(ejerciciosParaEntreno)) // 👈 SOLUCIÓN AQUÍ
             startActivity(intent)
         }
     }

@@ -5,41 +5,42 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
-import es.ua.eps.gimnasioapp.R
 
+class EntrenoAdapter(
+    private val ejercicios: List<EjercicioEntreno>,
+    private val activity: EntrenamientoActivity // Para acceder al launcher
+) : RecyclerView.Adapter<EntrenoAdapter.EjercicioViewHolder>() {
 
-class EntrenoAdapter(private val ejercicios: List<EjercicioEntreno>) :
-    RecyclerView.Adapter<EntrenoAdapter.ViewHolder>() {
-
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val nombre = view.findViewById<TextView>(R.id.tvNombreEjercicio)
-        val series = view.findViewById<TextView>(R.id.tvSeries)
-        val btnCompletar = view.findViewById<Button>(R.id.btnCompletar)
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v = LayoutInflater.from(parent.context)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EjercicioViewHolder {
+        val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_entreno_ejercicio, parent, false)
-        return ViewHolder(v)
+        return EjercicioViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: EjercicioViewHolder, position: Int) {
         val ejercicio = ejercicios[position]
-        val seriesHechas = ejercicio.pesosPorSerie.count { it > 0f }
-
-        holder.nombre.text = ejercicio.nombre
-        holder.series.text = "Series: $seriesHechas/${ejercicio.seriesTotales}"
-
-        holder.btnCompletar.setOnClickListener {
-            val index = ejercicio.pesosPorSerie.indexOfFirst { it == 0f }
-            if (index != -1) {
-                ejercicio.pesosPorSerie[index] = 1f // Simula que ha hecho una serie
-                notifyItemChanged(position)
-            }
-        }
+        holder.bind(ejercicio)
     }
 
     override fun getItemCount(): Int = ejercicios.size
+
+    inner class EjercicioViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private val tvNombre = view.findViewById<TextView>(R.id.tvNombreEjercicio)
+
+        fun bind(ejercicio: EjercicioEntreno) {
+            tvNombre.text = ejercicio.nombre
+
+            // Al hacer clic en el nombre del ejercicio, lanzamos RegistroSeriesActivity
+            itemView.setOnClickListener {
+                val intent = Intent(activity, RegistroSeriesActivity::class.java)
+                intent.putExtra("nombre", ejercicio.nombre)
+
+                val numSeries = ejercicio.seriesTotales.toString().toIntOrNull() ?: 0
+                intent.putExtra("series", numSeries)
+
+                activity.launcher.launch(intent)
+            }
+        }
+    }
 }

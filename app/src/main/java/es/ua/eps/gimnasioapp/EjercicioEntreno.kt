@@ -5,5 +5,5 @@ import java.io.Serializable
 data class EjercicioEntreno(
     val nombre: String,
     val seriesTotales: Int,
-    val pesosPorSerie: MutableList<Float> = MutableList(seriesTotales) { 0f }
+    val series: MutableList<SerieRegistro> = MutableList(seriesTotales) { SerieRegistro() }
 ) : Serializable
