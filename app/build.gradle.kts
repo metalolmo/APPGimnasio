@@ -41,6 +41,8 @@ dependencies {
     implementation("androidx.media3:media3-common-ktx:1.7.1")
     implementation ("com.jakewharton.threetenabp:threetenabp:1.4.5")
     implementation ("com.google.code.gson:gson:2.10.1")
+    implementation ("com.google.android.material:material:1.11.0")
+    implementation ("androidx.cardview:cardview:1.0.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
+        binding.toolbar.overflowIcon?.setTint(getColor(R.color.white))
 
         // Botones de navegación
         binding.btnRutinas.setOnClickListener {

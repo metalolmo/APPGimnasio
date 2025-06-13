@@ -1,33 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="12dp">
+    android:padding="12dp"
+    android:background="#33000000">
 
+    <!-- Cabecera con nombre y botón eliminar -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
         <TextView
             android:id="@+id/tvNombreEjercicio"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Nombre"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnEliminarEjercicio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="🗑" />
+            android:text="🗑"
+            android:textColor="@android:color/white"
+            android:backgroundTint="#CCFF4444"
+            app:cornerRadius="12dp"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="4dp"/>
     </LinearLayout>
 
+    <!-- Series realizadas -->
     <TextView
         android:id="@+id/tvSeries"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Series del ejercicio" />
+        android:text="Series del ejercicio"
+        android:textColor="#CCCCCC"
+        android:textSize="14sp"
+        android:layout_marginTop="4dp" />
 </LinearLayout>

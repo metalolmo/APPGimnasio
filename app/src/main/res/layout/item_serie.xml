@@ -3,27 +3,44 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="4dp">
+    android:padding="8dp"
+    android:background="#33000000"
+    android:layout_marginBottom="8dp"
+    android:gravity="center_vertical">
 
     <TextView
         android:id="@+id/tvSerie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Serie"
-        android:layout_marginEnd="8dp" />
+        android:text="Serie 1"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:layout_marginEnd="12dp" />
 
     <EditText
         android:id="@+id/etPeso"
-        android:layout_width="80dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:hint="Peso"
         android:inputType="numberDecimal"
-        android:layout_marginEnd="8dp" />
+        android:backgroundTint="@android:color/white"
+        android:textColor="@android:color/white"
+        android:textColorHint="#CCCCCC"
+        android:padding="8dp"
+        android:textSize="14sp" />
 
     <EditText
         android:id="@+id/etReps"
-        android:layout_width="80dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:hint="Reps"
-        android:inputType="number" />
+        android:inputType="number"
+        android:backgroundTint="@android:color/white"
+        android:textColor="@android:color/white"
+        android:textColorHint="#CCCCCC"
+        android:padding="8dp"
+        android:layout_marginStart="8dp"
+        android:textSize="14sp" />
 </LinearLayout>

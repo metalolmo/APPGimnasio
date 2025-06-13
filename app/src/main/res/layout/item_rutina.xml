@@ -3,13 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="12dp">
+    android:padding="12dp"
+    android:layout_marginVertical="8dp"
+    android:background="@drawable/bg_item_rutina"
+    android:elevation="2dp">
 
     <TextView
         android:id="@+id/textNombreRutina"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Nombre de rutina"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:padding="8dp" />
 </LinearLayout>

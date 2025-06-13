@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Gimnasioapp"
+        android:theme="@style/Theme.GimnasioApp"
         tools:targetApi="31">
         <activity
             android:name=".RegistroSeriesActivity"
@@ -21,7 +21,7 @@
         <activity
             android:name=".DetalleRutinaActivity"
             android:exported="false"
-            android:theme="@style/Theme.Gimnasioapp" />
+            android:theme="@style/Theme.GimnasioApp" />
         <activity
             android:name=".RutinaAdapter"
             android:exported="false" />
@@ -30,9 +30,6 @@
             android:exported="false" />
         <activity
             android:name=".CalendarioActivity"
-            android:exported="false" />
-        <activity
-            android:name=".EstadisticasActivity"
             android:exported="false" />
         <activity
             android:name=".HistorialActivity"
@@ -44,7 +41,7 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Gimnasioapp">
+            android:theme="@style/Theme.GimnasioApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
