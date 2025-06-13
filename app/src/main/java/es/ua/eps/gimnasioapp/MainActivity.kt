@@ -32,10 +32,6 @@ class MainActivity : AppCompatActivity() {
         binding.btnHistorial.setOnClickListener {
             startActivity(Intent(this, HistorialActivity::class.java))
         }
-
-        binding.btnEstadisticas.setOnClickListener {
-            startActivity(Intent(this, EstadisticasActivity::class.java))
-        }
     }
 
 

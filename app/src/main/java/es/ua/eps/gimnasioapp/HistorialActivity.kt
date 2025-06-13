@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.prolificinteractive.materialcalendarview.*
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
-import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.LinearLayoutManager
 
@@ -52,7 +51,6 @@ class HistorialActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun mostrarResumenEntrenamiento(ent: EntrenamientoRealizado) {
         val recyclerView = RecyclerView(this).apply {
             layoutManager = LinearLayoutManager(this@HistorialActivity)
@@ -60,7 +58,8 @@ class HistorialActivity : AppCompatActivity() {
                 ent.ejercicios.toMutableMap(),
                 onEliminar = { ejercicioNombre ->
                     ent.ejercicios.remove(ejercicioNombre)
-                    HistorialStorage.reemplazar(this@HistorialActivity, ent)
+                    val nuevaLista = entrenamientosMap.values.toList()
+                    HistorialStorage.guardarTodo(this@HistorialActivity, nuevaLista)
                     Toast.makeText(this@HistorialActivity, "Ejercicio eliminado", Toast.LENGTH_SHORT).show()
                 }
             )
@@ -73,5 +72,7 @@ class HistorialActivity : AppCompatActivity() {
             .setPositiveButton("Cerrar", null)
             .show()
     }
+
+
 
 }

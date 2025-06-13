@@ -40,6 +40,7 @@ dependencies {
     implementation ("com.prolificinteractive:material-calendarview:1.4.3")
     implementation("androidx.media3:media3-common-ktx:1.7.1")
     implementation ("com.jakewharton.threetenabp:threetenabp:1.4.5")
+    implementation ("com.google.code.gson:gson:2.10.1")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
