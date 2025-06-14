@@ -13,6 +13,12 @@
         android:theme="@style/Theme.GimnasioApp"
         tools:targetApi="31">
         <activity
+            android:name=".VideoReproductorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RutinasPredefinidasActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegistroSeriesActivity"
             android:exported="false" />
         <activity

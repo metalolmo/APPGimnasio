@@ -6,6 +6,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import es.ua.eps.gimnasioapp.databinding.ActivityRutinasBinding
+import android.content.Intent
+import android.widget.Button
+import android.widget.Toast
 
 class RutinasActivity : AppCompatActivity() {
 
@@ -34,6 +37,12 @@ class RutinasActivity : AppCompatActivity() {
         // Botón para agregar nuevas rutinas
         binding.fabAgregarRutina.setOnClickListener {
             mostrarDialogoAgregarRutina()
+        }
+
+        // Botón para ver rutinas predefinidas
+        binding.btnRutinasPredefinidas.setOnClickListener {
+            val intent = Intent(this, RutinasPredefinidasActivity::class.java)
+            startActivity(intent)
         }
     }
 
