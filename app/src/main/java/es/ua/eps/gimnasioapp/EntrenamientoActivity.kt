@@ -62,7 +62,12 @@ class EntrenamientoActivity : AppCompatActivity() {
         btnGuardar.setOnClickListener {
             val fecha = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
 
-            Log.d("GUARDAR_ENTRENO", entrenamientoMap.toString()) // ⬅️ AÑADE ESTO
+            // Rellenar ejercicios sin registrar con listas vacías
+            ejercicios.forEach { ejercicio ->
+                if (!entrenamientoMap.containsKey(ejercicio.nombre)) {
+                    entrenamientoMap[ejercicio.nombre] = emptyList()
+                }
+            }
 
             val entrenamiento = EntrenamientoRealizado(
                 fecha = fecha,

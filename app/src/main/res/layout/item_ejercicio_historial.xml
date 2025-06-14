@@ -44,7 +44,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Series del ejercicio"
-        android:textColor="#CCCCCC"
+        android:textColor="@android:color/white"
         android:textSize="14sp"
-        android:layout_marginTop="4dp" />
+        android:layout_marginTop="4dp"
+        android:visibility="visible" />
 </LinearLayout>
