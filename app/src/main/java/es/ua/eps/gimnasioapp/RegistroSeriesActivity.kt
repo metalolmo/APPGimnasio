@@ -1,13 +1,15 @@
 package es.ua.eps.gimnasioapp
 
 import android.app.Activity
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.text.InputType
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
-import java.io.Serializable
-import android.content.Intent
-
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 class RegistroSeriesActivity : AppCompatActivity() {
 
     private val listaSeries = mutableListOf<SerieRegistro>()
@@ -39,35 +41,68 @@ class RegistroSeriesActivity : AppCompatActivity() {
                 }
             }
 
-            val etPeso = EditText(this).apply {
+            // PESO
+            val pesoLayout = TextInputLayout(this).apply {
+                layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f).apply {
+                    marginEnd = 8
+                }
+                isHintEnabled = false
+                boxBackgroundMode = TextInputLayout.BOX_BACKGROUND_FILLED
+                boxBackgroundColor = Color.parseColor("#F0FFFFFF") // casi blanco, buena visibilidad
+                setBoxCornerRadii(24f, 24f, 24f, 24f)
+            }
+
+            val pesoInput = TextInputEditText(this).apply {
                 hint = "Peso (kg)"
-                inputType = android.text.InputType.TYPE_CLASS_NUMBER or android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL
-                layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+                inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
+                setTextColor(Color.WHITE)               // ← texto blanco
+                setHintTextColor(Color.LTGRAY)          // ← hint gris claro
+                setBackgroundColor(Color.TRANSPARENT)   // ← evita solapamiento de color base
+                setPadding(32, 24, 32, 24)
             }
 
-            val etReps = EditText(this).apply {
+            pesoLayout.addView(pesoInput)
+
+            // REPS
+            val repsLayout = TextInputLayout(this).apply {
+                layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f).apply {
+                    marginStart = 8
+                }
+                isHintEnabled = false
+                boxBackgroundMode = TextInputLayout.BOX_BACKGROUND_FILLED
+                boxBackgroundColor = Color.parseColor("#F0FFFFFF")
+                setBoxCornerRadii(24f, 24f, 24f, 24f)
+            }
+
+            val repsInput = TextInputEditText(this).apply {
                 hint = "Reps"
-                inputType = android.text.InputType.TYPE_CLASS_NUMBER
-                layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+                inputType = InputType.TYPE_CLASS_NUMBER
+                setTextColor(Color.WHITE)
+                setHintTextColor(Color.LTGRAY)
+                setBackgroundColor(Color.TRANSPARENT)
+                setPadding(32, 24, 32, 24)
             }
+            repsLayout.addView(repsInput)
 
-            etPeso.addTextChangedListener {
+            pesoInput.addTextChangedListener {
                 serie.peso = it.toString().toFloatOrNull() ?: 0f
             }
 
-            etReps.addTextChangedListener {
+            repsInput.addTextChangedListener {
                 serie.repeticiones = it.toString().toIntOrNull() ?: 0
             }
 
-            fila.addView(etPeso)
-            fila.addView(etReps)
+            fila.addView(pesoLayout)
+            fila.addView(repsLayout)
             contenedor.addView(fila)
         }
+        
 
         btnGuardar.setOnClickListener {
-            val resultIntent = Intent()
-            resultIntent.putExtra("nombre", nombre)
-            resultIntent.putExtra("seriesRealizadas", ArrayList(listaSeries))
+            val resultIntent = Intent().apply {
+                putExtra("nombre", nombre)
+                putExtra("seriesRealizadas", ArrayList(listaSeries))
+            }
             setResult(Activity.RESULT_OK, resultIntent)
             finish()
         }

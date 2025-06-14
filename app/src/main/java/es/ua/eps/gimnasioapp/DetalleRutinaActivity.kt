@@ -103,12 +103,15 @@ class DetalleRutinaActivity : AppCompatActivity() {
     private fun agregarEjercicioVista(ejercicio: Ejercicio) {
         val ejercicioLayout = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
-            setPadding(0, 8, 0, 8)
+            setPadding(16, 8, 16, 8)
+            setBackgroundColor(android.graphics.Color.parseColor("#333333")) // fondo gris oscuro
         }
 
         val texto = TextView(this).apply {
             text = "${ejercicio.nombre} - ${ejercicio.series} series"
             layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+            setTextColor(android.graphics.Color.WHITE) // ← 🔥 aquí forzamos el blanco
+            textSize = 16f
         }
 
         val btnEditar = Button(this).apply {

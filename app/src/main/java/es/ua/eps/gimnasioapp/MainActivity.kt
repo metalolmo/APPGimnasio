@@ -48,9 +48,6 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
                 true
             }
-            R.id.menu_acerca_de -> {
-                true
-            }
             R.id.menu_salir -> {
                 finish()
                 true

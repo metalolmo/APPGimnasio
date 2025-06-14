@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:text="🗑"
             android:textColor="@android:color/white"
-            android:backgroundTint="#CCFF4444"
+            android:backgroundTint="#333333"
             app:cornerRadius="12dp"
             android:minHeight="0dp"
             android:minWidth="0dp"
